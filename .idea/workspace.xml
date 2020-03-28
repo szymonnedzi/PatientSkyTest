@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9a1c20a-7dbc-4885-b44c-2b6a5b06803a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy appointments.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy patient metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy timeslots.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -17,17 +21,26 @@
     <option name="delegatedBuild" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48383084">
+    <splitter split-orientation="horizontal" split-proportion="0.47482908">
       <split-first>
         <leaf>
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="9" column="55" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
+                <state relative-caret-position="264">
+                  <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.10.3/jackson-databind-2.10.3.jar!/com/fasterxml/jackson/databind/JsonNode.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret lean-forward="true" />
                 </state>
               </provider>
             </entry>
@@ -49,8 +62,29 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/resources/Assignment description.txt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1296">
-                  <caret line="16" selection-start-line="16" selection-end-line="16" />
+                <state relative-caret-position="216">
+                  <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Emma Win.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="2" column="5" lean-forward="true" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy timeslot types.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="81">
+                  <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+                  <folding>
+                    <element signature="e#21#1347#0" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -76,7 +110,7 @@
         </leaf>
       </split-first>
       <split-second>
-        <splitter split-orientation="horizontal" split-proportion="0.5">
+        <splitter split-orientation="horizontal" split-proportion="0.25157234">
           <split-first>
             <leaf>
               <file pinned="false" current-in-tab="true">
@@ -95,20 +129,61 @@
           </split-first>
           <split-second>
             <leaf>
-              <file pinned="false" current-in-tab="true">
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy.json">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="15">
-                      <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+                    <state relative-caret-position="68">
+                      <caret line="2348" column="3" lean-forward="true" selection-start-line="2182" selection-end-line="2348" selection-end-column="3" />
                       <folding>
+                        <element signature="e#20#21006#0" />
+                        <element signature="e#21023#73966#0" />
+                        <element signature="e#21029#21340#0" />
+                        <element signature="e#73987#75313#0" />
+                        <element signature="e#73993#74315#0" />
+                        <element signature="n#!!block;n#patient_meta#0;n#!!top" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy patient metadata.json">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="17">
+                      <caret line="167" column="3" selection-start-line="167" selection-start-column="3" selection-end-line="167" selection-end-column="3" />
+                      <folding>
+                        <element signature="n#!!block;n#patient_meta#0;n#!!top" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy timeslots.json">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="34">
+                      <caret line="1506" column="1" lean-forward="true" selection-start-line="1506" selection-start-column="1" selection-end-line="1506" selection-end-column="1" />
+                      <folding>
+                        <element signature="e#17#52960#0" />
+                        <element signature="e#23#334#0" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy appointments.json">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="17">
+                      <caret line="626" column="3" lean-forward="true" selection-start-line="626" selection-start-column="3" selection-end-line="626" selection-end-column="3" />
+                      <folding>
+                        <element signature="e#20#21006#0" />
                         <element signature="e#26#558#0" />
                         <element signature="e#564#1096#0" />
                         <element signature="e#1102#1634#0" />
                         <element signature="e#1640#2172#0" />
                         <element signature="e#2178#2710#0" />
                         <element signature="e#2716#3248#0" />
-                        <element signature="e#21023#73966#0" />
-                        <element signature="e#73987#75313#0" />
                       </folding>
                     </state>
                   </provider>
@@ -156,7 +231,14 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/TimeslotType.java" />
         <option value="$PROJECT_DIR$/src/main/java/Calendar.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/CalendarJsons/tempArray.json" />
+        <option value="$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy timeslot types.json" />
+        <option value="$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy.json" />
+        <option value="$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy timeslots.json" />
+        <option value="$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy appointments.json" />
+        <option value="$PROJECT_DIR$/src/main/java/CalendarDeserializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy patient metadata.json" />
       </list>
     </option>
   </component>
@@ -251,6 +333,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/CalendarJsons" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -259,6 +342,9 @@
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Darek\Desktop\PatientSkyTest\src\main\resources\CalendarJsons" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Darek\Desktop\PatientSkyTest\src\main\resources" />
@@ -314,7 +400,7 @@
       <window_info id="Image Layers" order="4" />
       <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.12681913" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.3294686" />
+      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.3294686" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="2" weight="0.3294686" />
       <window_info anchor="bottom" id="Version Control" order="3" />
@@ -328,7 +414,7 @@
       <window_info anchor="right" id="Theme Preview" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Palette&#9;" order="2" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.036902286" />
+      <window_info active="true" anchor="right" id="Maven" order="3" visible="true" weight="0.036902286" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
@@ -360,36 +446,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Assignment description.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1296">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TimeslotType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
-          <folding>
-            <element signature="e#26#558#0" />
-            <element signature="e#564#1096#0" />
-            <element signature="e#1102#1634#0" />
-            <element signature="e#1640#2172#0" />
-            <element signature="e#2178#2710#0" />
-            <element signature="e#2716#3248#0" />
-            <element signature="e#21023#73966#0" />
-            <element signature="e#73987#75313#0" />
           </folding>
         </state>
       </provider>
@@ -404,12 +466,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.10.3/jackson-databind-2.10.3.jar!/com/fasterxml/jackson/databind/JsonNode.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/tempArray.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="2131" column="3" selection-start-line="2131" selection-start-column="3" selection-end-line="2131" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Assignment description.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Emma Win.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="5" lean-forward="true" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy timeslots.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="1506" column="1" lean-forward="true" selection-start-line="1506" selection-start-column="1" selection-end-line="1506" selection-end-column="1" />
+          <folding>
+            <element signature="e#17#52960#0" />
+            <element signature="e#23#334#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy timeslot types.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+          <folding>
+            <element signature="e#21#1347#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/CalendarDeserializer.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="55" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
+        <state relative-caret-position="264">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy appointments.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="626" column="3" lean-forward="true" selection-start-line="626" selection-start-column="3" selection-end-line="626" selection-end-column="3" />
+          <folding>
+            <element signature="e#20#21006#0" />
+            <element signature="e#26#558#0" />
+            <element signature="e#564#1096#0" />
+            <element signature="e#1102#1634#0" />
+            <element signature="e#1640#2172#0" />
+            <element signature="e#2178#2710#0" />
+            <element signature="e#2716#3248#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="2348" column="3" lean-forward="true" selection-start-line="2182" selection-end-line="2348" selection-end-column="3" />
+          <folding>
+            <element signature="e#20#21006#0" />
+            <element signature="e#21023#73966#0" />
+            <element signature="e#21029#21340#0" />
+            <element signature="e#73987#75313#0" />
+            <element signature="e#73993#74315#0" />
+            <element signature="n#!!block;n#patient_meta#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/CalendarJsons/Danny boy patient metadata.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="167" column="3" selection-start-line="167" selection-start-column="3" selection-end-line="167" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!block;n#patient_meta#0;n#!!top" />
           </folding>
         </state>
       </provider>

@@ -10,7 +10,5 @@ public class Main {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("C:\\Users\\Darek\\Desktop\\PatientSkyTest\\src\\main\\resources\\CalendarJsons\\Danny boy.json");
         Calendar calendar = objectMapper.readValue(file, Calendar.class);
-
     }
-
 }
