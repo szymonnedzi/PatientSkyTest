@@ -1,13 +1,27 @@
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.UUID;
 
 @JsonIgnoreProperties(value = "patient_meta")
 public class Calendar {
 
+    @JsonIgnore
+    UUID calendarID;
     List<Appointment> appointments;
     List<Timeslot> timeslots;
     List<TimeslotType> timeslottypes;
+
+    public UUID getCalendarID() {
+        return calendarID;
+    }
+
+    public void setCalendarID(UUID calendarID) {
+        this.calendarID = calendarID;
+    }
 
     public List<Appointment> getAppointments() {
         return appointments;
