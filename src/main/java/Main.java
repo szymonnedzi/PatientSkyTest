@@ -14,14 +14,19 @@ public class Main {
         System.out.println("Hello World!");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-        TypeReference<List<Appointment>> typeReference = new TypeReference<List<Appointment>>(){};
+        TypeReference<List<Appointment>> appointmentTypeReference = new TypeReference<List<Appointment>>(){};
         Path currentDir = Paths.get("");
         Path targetDir = Paths.get(currentDir + "src/main/resources/CalendarJsons/Danny boy appointments.json");
         File file = new File(String.valueOf(targetDir));
-        List<Appointment> appointments = objectMapper.readValue(file, typeReference);
+        List<Appointment> appointments = objectMapper.readValue(file, appointmentTypeReference);
         for (Appointment appointment : appointments) {
             System.out.println(appointment);
         }
+
+        TypeReference<Calendar> calendarTypeReference = new TypeReference<Calendar>(){};
+        Path targetDir2 = Paths.get(currentDir + "src/main/resources/CalendarJsons/Danny boy.json");
+        File file2 = new File(String.valueOf(targetDir2));
+        Calendar calendar = objectMapper.readValue(file2, calendarTypeReference);
 
 
     }
