@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         CalendarService calendarService = new CalendarService();
         List<Calendar> calendars = calendarService.getAllCalendars();
 

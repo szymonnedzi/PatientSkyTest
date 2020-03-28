@@ -1,18 +1,22 @@
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+
 public class CalendarService {
 
-    List<Calendar> getAllCalendars() throws IOException {
+    private static Logger logger = LogManager.getLogger(CalendarService.class);
+
+    List<Calendar> getAllCalendars() throws Exception {
         //Config data fetching
         List<Calendar> calendars = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -21,19 +25,26 @@ public class CalendarService {
         };
         Path projectDir = Paths.get("");
 
-        fetchOneCalendar(calendars, objectMapper, calendarTypeReference, projectDir, "Danny Boy");
-        fetchOneCalendar(calendars, objectMapper, calendarTypeReference, projectDir, "Emma Win");
-        fetchOneCalendar(calendars, objectMapper, calendarTypeReference, projectDir, "Joanna Hef");
+        addOneCalendar(calendars, objectMapper, calendarTypeReference, projectDir, "Danny Boy");
+        addOneCalendar(calendars, objectMapper, calendarTypeReference, projectDir, "Emma Win");
+        addOneCalendar(calendars, objectMapper, calendarTypeReference, projectDir, "Joanna Hef");
 
         return calendars;
     }
 
-    private void fetchOneCalendar(List<Calendar> calendars, ObjectMapper objectMapper, TypeReference<Calendar> calendarTypeReference, Path projectDir, String calendarOwner) throws IOException {
-        Path path = Paths.get(projectDir + "src/main/resources/CalendarJsons/" + calendarOwner + ".json");
-        File file = new File(String.valueOf(path));
-        Calendar calendar = objectMapper.readValue(file, calendarTypeReference);
-        calendar.setCalendarID(createCalendarUUID(calendarOwner));
-        calendars.add(calendar);
+    private void addOneCalendar(List<Calendar> calendars, ObjectMapper objectMapper, TypeReference<Calendar> calendarTypeReference, Path projectDir, String calendarOwner) throws Exception {
+        Calendar calendar = null;
+        try {
+            Path path = Paths.get(projectDir + "src/main/resources/CalendarJsons/" + calendarOwner + ".json");
+            File file = new File(String.valueOf(path));
+            calendar = objectMapper.readValue(file, calendarTypeReference);
+            calendar.setCalendarID(createCalendarUUID(calendarOwner));
+            calendars.add(calendar);
+            logger.info("Calendar added successfully");
+        } catch (Exception e) {
+            logger.error("Error processing .json calendar file");
+            e.printStackTrace();
+        }
     }
 
     static UUID createCalendarUUID(String calendarOwner) {
