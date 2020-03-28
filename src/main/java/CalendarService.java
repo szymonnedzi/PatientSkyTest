@@ -14,38 +14,26 @@ public class CalendarService {
 
     List<Calendar> getAllCalendars() throws IOException {
         //Config data fetching
+        List<Calendar> calendars = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-        TypeReference<Calendar> calendarTypeReference = new TypeReference<Calendar>() {};
+        TypeReference<Calendar> calendarTypeReference = new TypeReference<Calendar>() {
+        };
         Path projectDir = Paths.get("");
 
-        //Prepare the data - json locations
-        Path dannyPath = Paths.get(projectDir + "src/main/resources/CalendarJsons/Danny boy.json");
-        Path emmaPath = Paths.get(projectDir + "src/main/resources/CalendarJsons/Emma Win.json");
-        Path joannaPath = Paths.get(projectDir + "src/main/resources/CalendarJsons/Joanna Hef.json");
+        fetchOneCalendar(calendars, objectMapper, calendarTypeReference, projectDir, "Danny Boy");
+        fetchOneCalendar(calendars, objectMapper, calendarTypeReference, projectDir, "Emma Win");
+        fetchOneCalendar(calendars, objectMapper, calendarTypeReference, projectDir, "Joanna Hef");
 
-        //File fetching
-        File file2 = new File(String.valueOf(dannyPath));
-        File file3 = new File(String.valueOf(emmaPath));
-        File file4 = new File(String.valueOf(joannaPath));
-
-        //Calendar mapping
-        List<Calendar> calendars = new ArrayList<>();
-
-        Calendar calendar2 = objectMapper.readValue(file2, calendarTypeReference);
-        calendar2.setCalendarID(createCalendarUUID("Danny Boy"));
-        calendars.add(calendar2);
-
-        Calendar calendar3 = objectMapper.readValue(file3, calendarTypeReference);
-        calendar3.setCalendarID(createCalendarUUID("Emma Win"));
-        calendars.add(calendar3);
-
-        Calendar calendar4 = objectMapper.readValue(file4, calendarTypeReference);
-        calendar4.setCalendarID(createCalendarUUID("Joanna Hef"));
-        calendars.add(calendar4);
-
-        //Generate list of calendars.
         return calendars;
+    }
+
+    private void fetchOneCalendar(List<Calendar> calendars, ObjectMapper objectMapper, TypeReference<Calendar> calendarTypeReference, Path projectDir, String calendarOwner) throws IOException {
+        Path path = Paths.get(projectDir + "src/main/resources/CalendarJsons/" + calendarOwner + ".json");
+        File file = new File(String.valueOf(path));
+        Calendar calendar = objectMapper.readValue(file, calendarTypeReference);
+        calendar.setCalendarID(createCalendarUUID(calendarOwner));
+        calendars.add(calendar);
     }
 
     static UUID createCalendarUUID(String calendarOwner) {
