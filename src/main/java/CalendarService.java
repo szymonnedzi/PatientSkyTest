@@ -18,36 +18,36 @@ public class CalendarService {
     private static Logger logger = LogManager.getLogger(CalendarService.class);
 
     List<Calendar> getAllCalendars() {
-        //Config data fetching
         List<Calendar> calendarList = new ArrayList<>();
         TypeReference<Calendar> calendarTypeReference = new TypeReference<Calendar>() {
         };
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
-        addOneCalendar(calendarList, objectMapper, calendarTypeReference, "Danny Boy");
-        addOneCalendar(calendarList, objectMapper, calendarTypeReference, "Emma Win");
-        addOneCalendar(calendarList, objectMapper, calendarTypeReference, "Joanna Hef");
+        //This should be taking an array of
+        calendarList.add(getOneCalendar(objectMapper, calendarTypeReference, "Danny Boy"));
+        calendarList.add(getOneCalendar(objectMapper, calendarTypeReference, "Emma Win"));
+        calendarList.add(getOneCalendar(objectMapper, calendarTypeReference, "Joanna Hef"));
 
         return calendarList;
     }
 
-    private void addOneCalendar(List<Calendar> calendars,
-                                ObjectMapper objectMapper,
-                                TypeReference<Calendar> calendarTypeReference,
-                                String calendarOwner) {
+    private Calendar getOneCalendar(ObjectMapper objectMapper,
+                                    TypeReference<Calendar> calendarTypeReference,
+                                    String calendarOwner) {
+        Calendar calendar = null;
         try {
             Path projectDir = Paths.get("");
             Path path = Paths.get(projectDir + "src/main/resources/CalendarJsons/" + calendarOwner + ".json");
             File file = new File(String.valueOf(path));
-            Calendar calendar = objectMapper.readValue(file, calendarTypeReference);
+            calendar = objectMapper.readValue(file, calendarTypeReference);
             calendar.setCalendarID(createCalendarUUID(calendarOwner));
-            calendars.add(calendar);
-            logger.info("Calendar added successfully");
+            logger.info("Calendar fetched successfully");
         } catch (Exception e) {
             logger.error("Error processing .json calendar file for " + calendarOwner);
             e.printStackTrace();
         }
+        return calendar;
     }
 
     static UUID createCalendarUUID(String calendarOwner) {
@@ -61,4 +61,13 @@ public class CalendarService {
             return UUID.fromString("48644c7a-975e-11e5-a090-c8e0eb18c1e9");
         } else return UUID.fromString(UUID.nameUUIDFromBytes(calendarOwner.getBytes()).toString());
     }
+
+    List<UUID> generateCalendarUUIDsToCheck() {
+        List<UUID> calendarsToCheck = new ArrayList<>();
+        calendarsToCheck.add(UUID.fromString("48cadf26-975e-11e5-b9c2-c8e0eb18c1e9"));
+        calendarsToCheck.add(UUID.fromString("452dccfc-975e-11e5-bfa5-c8e0eb18c1e9"));
+        calendarsToCheck.add(UUID.fromString("48644c7a-975e-11e5-a090-c8e0eb18c1e9"));
+        return calendarsToCheck;
+    }
+
 }
