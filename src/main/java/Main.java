@@ -18,12 +18,6 @@ public class Main {
 
         List<Appointment> appointments = new ArrayList<>();
         List<Timeslot> timeslots = new ArrayList<>();
-        //Let's divide the working time between 08:00 and 20:15 into 15-minute slots for a day.
-        //That gives us 49 timeslots to work with (8:00 - 8:15, 8:15 - 8:30 etc.
-        //Creating an appointment will lead to blocking of a slot.
-        //Codes: 0 - available, 1 - unavailable.
-        //Integer[] availableSlots = new Integer[96];
-
 /*
         for (Calendar calendar : foundCalendars) {
             System.out.println(calendar.getCalendarID());
