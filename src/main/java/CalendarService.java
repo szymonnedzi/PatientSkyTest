@@ -14,6 +14,7 @@ import static com.fasterxml.jackson.databind.DeserializationFeature.ACCEPT_SINGL
 public class CalendarService {
 
     private static Logger logger = LogManager.getLogger(CalendarService.class);
+    private AppointmentService appointmentService = new AppointmentService();
 
     List<Calendar> getAllCalendars() {
         List<Calendar> calendarList = new ArrayList<>();
@@ -59,11 +60,22 @@ public class CalendarService {
         } else return UUID.fromString(UUID.nameUUIDFromBytes(calendarOwner.getBytes()).toString());
     }
 
+
+    static List<Calendar> getCalendarsByUUID(List<Calendar> allCalendars, List<UUID> generatedCalendarUUIDsToCheck) {
+        List<Calendar> foundCalendars = new ArrayList<>();
+        for (Calendar calendar : allCalendars) {
+            if (generatedCalendarUUIDsToCheck.contains(calendar.calendarID)) {
+                foundCalendars.add(calendar);
+            }
+        }
+        return foundCalendars;
+    }
+
     List<UUID> generateCalendarUUIDsToCheck() {
         List<UUID> calendarsToCheck = new ArrayList<>();
         calendarsToCheck.add(UUID.fromString("48cadf26-975e-11e5-b9c2-c8e0eb18c1e9"));
-        //calendarsToCheck.add(UUID.fromString("452dccfc-975e-11e5-bfa5-c8e0eb18c1e9"));
-        //calendarsToCheck.add(UUID.fromString("48644c7a-975e-11e5-a090-c8e0eb18c1e9"));
+        calendarsToCheck.add(UUID.fromString("452dccfc-975e-11e5-bfa5-c8e0eb18c1e9"));
+        calendarsToCheck.add(UUID.fromString("48644c7a-975e-11e5-a090-c8e0eb18c1e9"));
         return calendarsToCheck;
     }
 
@@ -71,30 +83,52 @@ public class CalendarService {
                                   Integer duration,
                                   Date startOfPeriodToSearch,
                                   Date endOfPeriodToSearch) {
-        if (isInvalidDuration(duration)) {
+        if (!isValidDuration(duration)) {
             return;
         }
-
-
-        //From all timeslots select just the possible timeslots in the given time period
-        List<Timeslot> foundTimeslots = findAllTimeslotsInCalendar
-                (calendars, startOfPeriodToSearch, endOfPeriodToSearch);
-
-        //Find the existing appointments to detect collisions
-        List<Appointment> appointments = findAppointmentsInCalendar
-                (calendars, startOfPeriodToSearch, endOfPeriodToSearch);
-
-        System.out.println("Commence removing of collisions");
-
-        List<Timeslot> availableTimeslots = removeCollisions(foundTimeslots, appointments);
-
-        System.out.println("All available timeslots:");
-        for (Timeslot timeslot : availableTimeslots) {
-            System.out.println("Timeslot:"
-                    + timeslot.getStart() + " - " + timeslot.getEnd());
+        for (Calendar calendar : calendars) {
+            findAvailableTime(calendar, duration, startOfPeriodToSearch, endOfPeriodToSearch);
         }
 
     }
+
+
+    public void findAvailableTime(Calendar calendar,
+                                  Integer duration,
+                                  Date startOfPeriodToSearch,
+                                  Date endOfPeriodToSearch) {
+        System.out.println("Calendar ID: " + calendar.getCalendarID());
+
+        //From all timeslots select just the possible timeslots in the given time period
+        List<Timeslot> foundTimeslots = findAllTimeslotsInCalendar
+                (calendar, startOfPeriodToSearch, endOfPeriodToSearch);
+
+        //Find the existing appointments to detect collisions
+        List<Appointment> appointments = appointmentService.findAppointmentsInCalendar
+                (calendar, startOfPeriodToSearch, endOfPeriodToSearch);
+
+        List<Timeslot> availableTimeslots = removeCollisions(foundTimeslots, appointments);
+
+        System.out.println("Available timeslots for Calendar ID: " + calendar.getCalendarID());
+        for (Timeslot timeslot : availableTimeslots) {
+            System.out.println("Timeslot: " + timeslot.getStart() + " - " + timeslot.getEnd());
+        }
+
+    }
+
+    private List<Timeslot> findAllTimeslotsInCalendar(Calendar calendar, Date startOfSearchPeriod, Date endOfSearchPeriod) {
+        List<Timeslot> allTimeslots = calendar.getTimeslots();
+        List<Timeslot> foundTimeslots = new ArrayList<>();
+        for (Timeslot timeslot : allTimeslots) {
+            if (timeslot.getStart().after(startOfSearchPeriod)
+                    && timeslot.getEnd().before(endOfSearchPeriod)) {
+                //System.out.println("Timeslot:" + timeslot.getStart() + " - " + timeslot.getEnd());
+                foundTimeslots.add(timeslot);
+            }
+        }
+        return foundTimeslots;
+    }
+
 
     private List<Timeslot> removeCollisions(List<Timeslot> foundTimeslots, List<Appointment> appointments) {
         List<Timeslot> availableTimeslots = new ArrayList<>(foundTimeslots);
@@ -102,6 +136,7 @@ public class CalendarService {
             for (Iterator<Timeslot> iter = availableTimeslots.iterator(); iter.hasNext(); ) {
                 Timeslot timeslot = iter.next();
                 if (timeslot.getStart().equals(appointment.getStart())) {
+                    System.out.println("Collision due to preexisting appointment: " + appointment.getStart() + " - " + appointment.getEnd() + ", timeslot removed");
                     iter.remove();
                 }
             }
@@ -109,43 +144,12 @@ public class CalendarService {
         return availableTimeslots;
     }
 
-    private boolean isInvalidDuration(Integer duration) {
+    private boolean isValidDuration(Integer duration) {
         HashSet<Integer> availableDurations = new HashSet<>(Arrays.asList(15, 30));
         if (!availableDurations.contains(duration)) {
             System.out.println("Invalid duration");
-            return true;
+            return false;
         }
-        return false;
-    }
-
-    private List<Timeslot> findAllTimeslotsInCalendar(List<Calendar> calendars, Date startOfPeriodToSearch, Date endOfPeriodToSearch) {
-        List<Timeslot> allTimeslots;
-        List<Timeslot> foundTimeslots = new ArrayList<>();
-        for (Calendar calendar : calendars) {
-            allTimeslots = calendar.getTimeslots();
-            for (Timeslot timeslot : allTimeslots) {
-                if (timeslot.getStart().after(startOfPeriodToSearch)
-                        && timeslot.getEnd().before(endOfPeriodToSearch)) {
-                    System.out.println("Timeslot:" + timeslot.getStart() + " - " + timeslot.getEnd());
-                    foundTimeslots.add(timeslot);
-                }
-            }
-        }
-        return foundTimeslots;
-    }
-
-    private List<Appointment> findAppointmentsInCalendar(List<Calendar> calendars, Date startOfPeriodToSearch, Date endOfPeriodToSearch) {
-        List<Appointment> appointments = new ArrayList<>();
-        //Existing appointments in the selected time period.
-        for (Calendar calendar : calendars) {
-            for (Appointment appointment : calendar.getAppointments()) {
-                if (appointment.getStart().after(startOfPeriodToSearch)
-                        && appointment.getEnd().before(endOfPeriodToSearch)) {
-                    System.out.println("Appointment: " + appointment.getStart() + " - " + appointment.getEnd());
-                    appointments.add(appointment);
-                }
-            }
-        }
-        return appointments;
+        return true;
     }
 }
