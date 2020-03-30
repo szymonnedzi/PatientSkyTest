@@ -6,9 +6,6 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 import static com.fasterxml.jackson.databind.DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY;
@@ -111,18 +108,19 @@ public class CalendarService {
         List<Timeslot> availableTimeslots = removeCollisions(foundTimeslots, appointments);
 
         System.out.println("Available timeslots for Calendar ID: " + calendar.getCalendarID());
+
+        /*
+        This is listing all the time slots that don't collide with an appointment,
+        so if you're looking for a 30 min slot
+        you might get offered 2 x 15 back to back(OK), a 30 min slot(OK),
+        or a single 15 right now. Merging/Splitting slots is out of scope ATM.
+        */
         for (Timeslot timeslot : availableTimeslots) {
             System.out.println("Timeslot: " + timeslot.getStart() + " - " + timeslot.getEnd()
-                    + " duration[min]: " + calculateDuration(timeslot));
+                    + " duration[min]: " + timeslotService.calculateDuration(timeslot));
         }
-
     }
 
-    private long calculateDuration(Timeslot timeslot) {
-        LocalDateTime startDate = timeslot.getStart().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        LocalDateTime endDate = timeslot.getEnd().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        return ChronoUnit.MINUTES.between(startDate, endDate);
-    }
 
     private List<Timeslot> removeCollisions(List<Timeslot> foundTimeslots, List<Appointment> appointments) {
         // The assumption here is that no appointment is existing in 2 timeslots, like:
